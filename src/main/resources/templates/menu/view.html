@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
+
+    <body class="container">
+
+        <h1 th:text="${title}">Default Title</h1>
+
+        <nav th:replace="fragments :: navigation"></nav>
+
+        <br />
+
+        <table th:if="${menu.cheeses} and ${menu.cheeses.size()}" class="table">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+            </tr>
+
+            <tr th:each="cheese : ${menu.cheeses}">
+                <td th:text="${cheese.name}"></td>
+                <td th:text="${cheese.description}"></td>
+                <td th:text="${cheese.category.name}"></td>
+            </tr>
+        </table>
+
+        <span><a th:href="'/menu/add-item/'+ ${menu.id}">Add More Cheese</a></span>
+
+    </body>
+</html>
